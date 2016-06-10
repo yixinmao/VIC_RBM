@@ -100,7 +100,8 @@ da_flow = da_flow.sel(time=slice(start_date_str, end_date_str))
 if cfg['INPUT']['flow_data_type']=='RVIC': # if RVIC output, convert m3/s to cfs
     da_flow = da_flow * pow(1000.0/25.4/12, 3)
 
-#=== Set zero flow to 5.0 cfs ====#
+#=== Set zero flow to 5.0 cfs ===#
+# This is to be consistent with the original RBM version with modified Lohmann routing model
 da_flow.values[da_flow.values<5.0] = 5.0
 
 #=== Calculate flow depth, width and velocity ===#
